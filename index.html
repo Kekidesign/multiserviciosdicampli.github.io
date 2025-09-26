@@ -115,50 +115,50 @@
                         </a>
                     </div>
                 </div>
-     <form id="contact-form" action="https://formsubmit.co/ajax/multiserviciosdicampli25@gmail.com" method="POST">
-  <input type="text" name="nombre" placeholder="Tu nombre" required>
-  <input type="email" name="email" placeholder="Tu correo" required>
-  <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/ajax/multiserviciosdicampli25@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono (opcional)</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000">
+                    </div>
+                    <div class="form-group">
+                        <label for="servicio">Servicio de interés</label>
+                        <select id="servicio" name="servicio">
+                            <option value="">Selecciona un servicio</option>
+                            <option value="bricolaje">Bricolaje Integral</option>
+                            <option value="climatizacion">Climatización</option>
+                            <option value="frigorificos">Frigoríficos Comerciales</option>
+                            <option value="otro">Otro servicio</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+                    </div>
 
-  <!-- Configuraciones opcionales -->
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_template" value="table">
+                    <!-- Configuraciones ocultas de FormSubmit -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje de la web">
+                    <input type="hidden" name="_next" value="https://tudominio.com/gracias">
+                    <input type="text" name="_honey" style="display:none">
 
-  <button type="submit">Enviar</button>
-</form>
-
-<!-- Aviso de éxito -->
-<div id="success-message" style="display:none; margin-top:10px; color:green;">
-  ✅ Mensaje enviado con éxito
-</div>
-
-<script>
-  const form = document.getElementById('contact-form');
-  const successMessage = document.getElementById('success-message');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault(); // Evita redirección
-
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        form.reset();
-        successMessage.style.display = 'block';
-      } else {
-        alert('Hubo un error al enviar el mensaje.');
-      }
-    }).catch(error => {
-      alert('Error de conexión. Intenta más tarde.');
-    });
-  });
-</script>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-submit">
+                            <span class="btn-text">Enviar mensaje</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+                    
+                    <div id="form-messages" class="form-messages"></div>
+                </form>
             </div>
         </div>
     </section>
@@ -171,5 +171,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/form.js"></script>
 </body>
 </html>
