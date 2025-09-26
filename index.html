@@ -202,63 +202,50 @@
                 </div>
                 
                 <!-- Formulario de Contacto -->
-                <form id="contact-form" class="contact-form" action="https://formsubmit.co/multiserviciosdicampli25@gmail.com" method="POST" onsubmit="return validateForm()">
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/multiserviciosdicampli@gmail.com" method="POST" onsubmit="return validateForm()" style="flex: 1; min-width: 300px; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                     <!-- Configuración de FormSubmit -->
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Multiservicios Di Campli">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://multiserviciosdicampli.com/gracias.html">
                     <input type="hidden" name="_autoresponse" value="Gracias por contactar con Multiservicios Di Campli. Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.">
-                    <input type="hidden" name="_replyto" value="_replyto">
                     <input type="text" name="_honey" style="display:none">
                     
                     <div id="form-messages" class="form-messages"></div>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nombre">Nombre completo *</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required minlength="2" maxlength="100">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo electrónico *</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
-                        </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <input type="text" id="nombre" name="name" class="form-control" placeholder="Tu Nombre" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
                     </div>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+34 600 000 000" pattern="[0-9+\-\s()]{6,20}" title="Por favor, introduce un número de teléfono válido">
-                        </div>
-                        <div class="form-group">
-                            <label for="servicio">Servicio de interés</label>
-                            <select id="servicio" name="servicio" class="form-control">
-                                <option value="">Selecciona un servicio</option>
-                                <option value="Bricolaje Integral">Bricolaje Integral</option>
-                                <option value="Climatización">Climatización</option>
-                                <option value="Frigoríficos Comerciales">Frigoríficos Comerciales</option>
-                                <option value="Otro servicio">Otro servicio</option>
-                            </select>
-                        </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Tu Email" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
                     </div>
                     
-                    <div class="form-group message-group">
-                        <label for="mensaje">Mensaje *</label>
-                        <div class="textarea-container">
-                            <textarea id="mensaje" name="mensaje" class="form-control" rows="6" placeholder="Cuéntanos en qué podemos ayudarte..." required maxlength="500"></textarea>
-
-                            <div class="char-counter"><span id="char-count">0</span>/500</div>
-                        </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Tu Teléfono (Opcional)" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
                     </div>
                     
-                    <div class="form-footer">
-                        <p class="required-fields">* Campos obligatorios</p>
-                        <button type="submit" class="btn-submit">
-                            <span>Enviar mensaje</span>
-                            <i class="fas fa-paper-plane"></i>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <select id="servicio" name="servicio" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; background-color: #fff; color: #111;">
+                            <option value="">Selecciona un servicio</option>
+                            <option value="Bricolaje Integral">Bricolaje Integral</option>
+                            <option value="Climatización">Climatización</option>
+                            <option value="Frigoríficos Comerciales">Frigoríficos Comerciales</option>
+                            <option value="Otro servicio">Otro servicio</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <textarea id="mensaje" name="message" placeholder="Cuéntanos en qué podemos ayudarte..." rows="5" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; resize: vertical; min-height: 120px;"></textarea>
+                        <div class="char-counter" style="text-align: right; font-size: 0.8rem; color: #666; margin-top: 0.25rem;"><span id="char-count">0</span>/500</div>
+                    </div>
+                    
+                    <div class="form-group" style="text-align: right;">
+                        <button type="submit" class="btn-submit" style="background: #111; color: #fff; padding: 0.75rem 2rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; transition: background 0.3s ease;">
+                            Enviar Mensaje
                         </button>
                     </div>
-                  </form>
+                </form>
             </div>
         </div>
     </section>
