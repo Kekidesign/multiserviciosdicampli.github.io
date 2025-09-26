@@ -126,6 +126,57 @@ if (contactForm) {
     });
 }
 
+// Contador de caracteres para el textarea
+document.addEventListener('DOMContentLoaded', function() {
+    const mensajeTextarea = document.getElementById('mensaje');
+    const charCount = document.getElementById('char-count');
+    const maxLength = 500;
+
+    if (mensajeTextarea && charCount) {
+        // Actualizar contador al cargar la página
+        charCount.textContent = mensajeTextarea.value.length;
+        
+        // Actualizar contador al escribir
+        mensajeTextarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            charCount.textContent = currentLength;
+            
+            // Cambiar color cuando se acerca al límite
+            if (currentLength > maxLength * 0.8) {
+                charCount.style.color = '#ff6b6b';
+            } else {
+                charCount.style.color = '';
+            }
+            
+            // Limitar caracteres si se excede el máximo
+            if (currentLength > maxLength) {
+                this.value = this.value.substring(0, maxLength);
+                charCount.textContent = maxLength;
+            }
+        });
+    }
+});
+
+// Configuración de FormSubmit
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            // No prevenir el comportamiento por defecto para permitir que FormSubmit funcione
+            const submitButton = this.querySelector('button[type="submit"]');
+            
+            // Deshabilitar el botón para evitar múltiples envíos
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            }
+            
+            // El formulario se enviará normalmente a FormSubmit
+        });
+    }
+});
+
 // Contador de estadísticas (opcional)
 function initCounters() {
     const counters = document.querySelectorAll('.counter');
@@ -173,3 +224,52 @@ document.addEventListener('DOMContentLoaded', () => {
         images[currentIndex].classList.add('active');
     }, 5000); // Cambia cada 5 segundos
 });
+
+// Función de validación del formulario
+function validateForm() {
+    const form = document.getElementById('contact-form');
+    const nombre = document.getElementById('nombre');
+    const email = document.getElementById('email');
+    const mensaje = document.getElementById('mensaje');
+    const submitButton = form.querySelector('button[type="submit"]');
+    
+    // Validar campos obligatorios
+    if (nombre.value.trim() === '' || email.value.trim() === '' || mensaje.value.trim() === '') {
+        showMessage('Por favor, completa todos los campos obligatorios', 'error');
+        return false;
+    }
+    
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.value)) {
+        showMessage('Por favor, introduce un correo electrónico válido', 'error');
+        return false;
+    }
+    
+    // Deshabilitar botón y mostrar indicador de carga
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    }
+    
+    // Si todo está correcto, el formulario se enviará
+    return true;
+}
+
+// Función para mostrar mensajes
+function showMessage(message, type = 'success') {
+    const messagesDiv = document.getElementById('form-messages');
+    if (messagesDiv) {
+        messagesDiv.textContent = message;
+        messagesDiv.className = 'form-messages ' + type;
+        
+        // Desplazarse al mensaje
+        messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Ocultar el mensaje después de 5 segundos
+        setTimeout(() => {
+            messagesDiv.textContent = '';
+            messagesDiv.className = 'form-messages';
+        }, 5000);
+    }
+}

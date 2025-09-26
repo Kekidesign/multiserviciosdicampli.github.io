@@ -202,20 +202,21 @@
                 </div>
                 
                 <!-- Formulario de Contacto -->
-                <form id="contact-form" class="contact-form" action="https://formsubmit.co/multiserviciosdicampli25@gmail.com" method="POST">
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/multiserviciosdicampli25@gmail.com" method="POST" onsubmit="return validateForm()">
                     <!-- Configuración de FormSubmit -->
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Multiservicios Di Campli">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://multiserviciosdicampli.github.io/gracias.html">
                     <input type="text" name="_honey" style="display:none">
+                    <input type="hidden" name="_autoresponse" value="Gracias por contactar con Multiservicios Di Campli. Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.">
                     
                     <div id="form-messages" class="form-messages"></div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nombre">Nombre completo *</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required>
+                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required minlength="2" maxlength="100">
                         </div>
                         <div class="form-group">
                             <label for="email">Correo electrónico *</label>
@@ -226,7 +227,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+34 600 000 000">
+                            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+34 600 000 000" pattern="[0-9+\-\s()]{6,20}" title="Por favor, introduce un número de teléfono válido">
                         </div>
                         <div class="form-group">
                             <label for="servicio">Servicio de interés</label>
@@ -243,7 +244,7 @@
                     <div class="form-group message-group">
                         <label for="mensaje">Mensaje *</label>
                         <div class="textarea-container">
-                            <textarea id="mensaje" name="mensaje" class="form-control" rows="6" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+                            <textarea id="mensaje" name="mensaje" class="form-control" rows="6" placeholder="Cuéntanos en qué podemos ayudarte..." required maxlength="500"></textarea>
                             <div class="char-counter"><span id="char-count">0</span>/500</div>
                         </div>
                     </div>
