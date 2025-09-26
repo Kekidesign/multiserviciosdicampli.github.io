@@ -124,9 +124,10 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-info {
+/* Estilos consolidados para .contact-info y .contact-form */
+.contact-info,
+.contact-form {
     background: white;
-    padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     height: 100%;
@@ -136,6 +137,18 @@ body {
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.contact-info {
+    padding: 2rem;
+}
+
+.contact-form {
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .contact-info::before {
@@ -149,22 +162,6 @@ body {
     transition: all 0.4s ease;
 }
 
-.contact-info:hover::before {
-    width: 6px;
-}
-
-.contact-form {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    height: 100%;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
 .contact-form::before {
     content: '';
     position: absolute;
@@ -174,6 +171,10 @@ body {
     height: 4px;
     background: linear-gradient(to right, var(--primary-color), #3498db);
     transition: all 0.4s ease;
+}
+
+.contact-info:hover::before {
+    width: 6px;
 }
 
 .contact-form:hover {
@@ -358,7 +359,13 @@ nav ul li a:hover {
     border-radius: 10px;
     text-align: center;
     box-shadow: var(--box-shadow);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .service-card:hover {
@@ -614,13 +621,8 @@ nav ul li a:hover {
     margin-bottom: 1.5rem;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.6rem;
+/* Estilos para campos de formulario */
+.form-control {
     font-weight: 500;
     color: #444;
     font-size: 0.95rem;

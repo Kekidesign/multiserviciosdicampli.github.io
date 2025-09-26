@@ -113,19 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Ejecutar animaciones al hacer scroll
 window.addEventListener('scroll', animateOnScroll);
 
-// Formulario de contacto
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Aquí iría el código para enviar el formulario
-        // Por ahora, solo mostramos un mensaje de éxito
-        alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-        this.reset();
-    });
-}
-
 // Contador de caracteres para el textarea
 document.addEventListener('DOMContentLoaded', function() {
     const mensajeTextarea = document.getElementById('mensaje');
@@ -226,8 +213,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Función de validación del formulario
-function validateForm() {
-    const form = document.getElementById('contact-form');
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = this;
     const nombre = document.getElementById('nombre');
     const email = document.getElementById('email');
     const telefono = document.getElementById('telefono');
@@ -237,6 +228,11 @@ function validateForm() {
     // Resetear mensajes de error previos
     const errorElements = form.querySelectorAll('.error-message');
     errorElements.forEach(el => el.remove());
+    
+    // Resetear estilos de error
+    [nombre, email, mensaje, telefono].forEach(field => {
+        field.style.borderColor = '#ddd';
+    });
     
     // Validar campos obligatorios
     let isValid = true;
@@ -259,7 +255,7 @@ function validateForm() {
         isValid = false;
     }
     
-    // Validar teléfono si se ha introducido
+    // Validar teléfono solo si se ha introducido
     if (telefono.value.trim() !== '' && !/^[0-9+\-\s()]{6,20}$/.test(telefono.value)) {
         showFieldError(telefono, 'Por favor, introduce un número de teléfono válido');
         isValid = false;
@@ -276,15 +272,49 @@ function validateForm() {
         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
     }
     
-    // Mostrar mensaje de envío exitoso
+    // Mostrar mensaje de envío
     showMessage('Enviando tu mensaje, por favor espera...', 'info');
     
-    // Forzar el envío del formulario después de un pequeño retraso para que se vea el mensaje
-    setTimeout(() => {
-        form.submit();
-    }, 500);
+    // Crear un formulario temporal para enviar los datos
+    const formData = new FormData(form);
     
-    return true;
+    // Enviar datos a FormSubmit
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            showMessage('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.', 'success');
+            form.reset();
+        } else {
+            throw new Error('Error al enviar el formulario');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        let errorMessage = 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.';
+        
+        if (error.message.includes('NetworkError')) {
+            errorMessage = 'Error de conexión. Por favor, verifica tu conexión a internet.';
+        } else if (error.message.includes('Failed to fetch')) {
+            errorMessage = 'No se pudo conectar con el servidor. Por favor, inténtalo de nuevo en unos minutos.';
+        }
+        
+        showMessage(errorMessage, 'error');
+    })
+    .finally(() => {
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Enviar Mensaje';
+        }
+    });
+    
+    return false;
+    });
 }
 
 // Función para mostrar mensajes de error en campos específicos
