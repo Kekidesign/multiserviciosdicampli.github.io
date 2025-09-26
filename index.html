@@ -203,54 +203,57 @@
                 
                 <!-- Formulario de Contacto -->
                 <form id="contact-form" class="contact-form" action="https://formsubmit.co/multiserviciosdicampli25@gmail.com" method="POST">
-                    <!-- Opcional: evita spam -->
+                    <!-- Configuración de FormSubmit -->
                     <input type="hidden" name="_captcha" value="false">
-                    <!-- Opcional: redirección después del envío -->
-                    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
-                    <!-- Opcional: nombre del formulario -->
-                    <input type="hidden" name="_subject" value="Nuevo mensaje desde el formulario web">
-                  
+                    <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Multiservicios Di Campli">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://multiserviciosdicampli.github.io/gracias.html">
+                    <input type="text" name="_honey" style="display:none">
+                    
+                    <div id="form-messages" class="form-messages"></div>
+                    
                     <div class="form-row">
-                      <div class="form-group">
-                        <label for="name">Nombre completo *</label>
-                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
-                      </div>
-                      <div class="form-group">
-                        <label for="email">Correo electrónico *</label>
-                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
-                      </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo *</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico *</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+                        </div>
                     </div>
-                  
+                    
                     <div class="form-row">
-                      <div class="form-group">
-                        <label for="telefono">Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000">
-                      </div>
-                      <div class="form-group">
-                        <label for="servicio">Servicio de interés</label>
-                        <select id="servicio" name="servicio">
-                          <option value="">Selecciona un servicio</option>
-                          <option value="bricolaje">Bricolaje Integral</option>
-                          <option value="climatizacion">Climatización</option>
-                          <option value="frigorificos">Frigoríficos Comerciales</option>
-                          <option value="otro">Otro servicio</option>
-                        </select>
-                      </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+34 600 000 000">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">Servicio de interés</label>
+                            <select id="servicio" name="servicio" class="form-control">
+                                <option value="">Selecciona un servicio</option>
+                                <option value="Bricolaje Integral">Bricolaje Integral</option>
+                                <option value="Climatización">Climatización</option>
+                                <option value="Frigoríficos Comerciales">Frigoríficos Comerciales</option>
+                                <option value="Otro servicio">Otro servicio</option>
+                            </select>
+                        </div>
                     </div>
-                  
-                    <div class="form-row">
-                      <div class="form-group">
+                    
+                    <div class="form-group message-group">
                         <label for="mensaje">Mensaje *</label>
-                        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
-                      </div>
+                        <div class="textarea-container">
+                            <textarea id="mensaje" name="mensaje" class="form-control" rows="6" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+                            <div class="char-counter"><span id="char-count">0</span>/500</div>
+                        </div>
                     </div>
-                  
+                    
                     <div class="form-footer">
-                      <p class="required-fields">* Campos obligatorios</p>
-                      <button type="submit" class="btn-submit">
-                        <span>Enviar mensaje</span>
-                        <i class="fas fa-paper-plane"></i>
-                      </button>
+                        <p class="required-fields">* Campos obligatorios</p>
+                        <button type="submit" class="btn-submit">
+                            <span>Enviar mensaje</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
                   </form>
             </div>
