@@ -230,19 +230,43 @@ function validateForm() {
     const form = document.getElementById('contact-form');
     const nombre = document.getElementById('nombre');
     const email = document.getElementById('email');
+    const telefono = document.getElementById('telefono');
     const mensaje = document.getElementById('mensaje');
     const submitButton = form.querySelector('button[type="submit"]');
     
+    // Resetear mensajes de error previos
+    const errorElements = form.querySelectorAll('.error-message');
+    errorElements.forEach(el => el.remove());
+    
     // Validar campos obligatorios
-    if (nombre.value.trim() === '' || email.value.trim() === '' || mensaje.value.trim() === '') {
-        showMessage('Por favor, completa todos los campos obligatorios', 'error');
-        return false;
+    let isValid = true;
+    
+    if (nombre.value.trim() === '') {
+        showFieldError(nombre, 'Por favor, introduce tu nombre completo');
+        isValid = false;
     }
     
-    // Validar formato de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.value)) {
-        showMessage('Por favor, introduce un correo electrónico válido', 'error');
+    if (email.value.trim() === '') {
+        showFieldError(email, 'Por favor, introduce tu correo electrónico');
+        isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        showFieldError(email, 'Por favor, introduce un correo electrónico válido');
+        isValid = false;
+    }
+    
+    if (mensaje.value.trim() === '') {
+        showFieldError(mensaje, 'Por favor, escribe tu mensaje');
+        isValid = false;
+    }
+    
+    // Validar teléfono si se ha introducido
+    if (telefono.value.trim() !== '' && !/^[0-9+\-\s()]{6,20}$/.test(telefono.value)) {
+        showFieldError(telefono, 'Por favor, introduce un número de teléfono válido');
+        isValid = false;
+    }
+    
+    if (!isValid) {
+        showMessage('Por favor, corrige los errores en el formulario', 'error');
         return false;
     }
     
@@ -252,8 +276,40 @@ function validateForm() {
         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
     }
     
-    // Si todo está correcto, el formulario se enviará
+    // Mostrar mensaje de envío exitoso
+    showMessage('Enviando tu mensaje, por favor espera...', 'info');
+    
+    // Forzar el envío del formulario después de un pequeño retraso para que se vea el mensaje
+    setTimeout(() => {
+        form.submit();
+    }, 500);
+    
     return true;
+}
+
+// Función para mostrar mensajes de error en campos específicos
+function showFieldError(input, message) {
+    const errorElement = document.createElement('div');
+    errorElement.className = 'error-message';
+    errorElement.style.color = '#e74c3c';
+    errorElement.style.fontSize = '0.8rem';
+    errorElement.style.marginTop = '5px';
+    errorElement.textContent = message;
+    
+    // Insertar después del campo
+    input.parentNode.insertBefore(errorElement, input.nextSibling);
+    
+    // Resaltar el campo con error
+    input.style.borderColor = '#e74c3c';
+    
+    // Quitar el resaltado al corregir
+    input.addEventListener('input', function clearError() {
+        this.style.borderColor = '';
+        if (errorElement.parentNode) {
+            errorElement.parentNode.removeChild(errorElement);
+        }
+        this.removeEventListener('input', clearError);
+    });
 }
 
 // Función para mostrar mensajes

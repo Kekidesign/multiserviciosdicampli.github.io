@@ -207,9 +207,10 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Multiservicios Di Campli">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://multiserviciosdicampli.github.io/gracias.html">
-                    <input type="text" name="_honey" style="display:none">
+                    <input type="hidden" name="_next" value="https://multiserviciosdicampli.com/gracias.html">
                     <input type="hidden" name="_autoresponse" value="Gracias por contactar con Multiservicios Di Campli. Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.">
+                    <input type="hidden" name="_replyto" value="_replyto">
+                    <input type="text" name="_honey" style="display:none">
                     
                     <div id="form-messages" class="form-messages"></div>
                     
@@ -245,6 +246,7 @@
                         <label for="mensaje">Mensaje *</label>
                         <div class="textarea-container">
                             <textarea id="mensaje" name="mensaje" class="form-control" rows="6" placeholder="Cuéntanos en qué podemos ayudarte..." required maxlength="500"></textarea>
+
                             <div class="char-counter"><span id="char-count">0</span>/500</div>
                         </div>
                     </div>
