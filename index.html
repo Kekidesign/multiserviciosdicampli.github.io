@@ -4,9 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiservicios Integrales | Soluciones para tu Hogar</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Estilos críticos -->
+    <style>
+        /* Estilos críticos para asegurar que algo se vea */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        /* Se cargarán los estilos completos después */
+    </style>
+    
+    <!-- Preload para CSS principal -->
+    <link rel="preload" href="css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/styles.css"></noscript>
+    
+    <!-- Font Awesome con integridad -->
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer" />
+          
+    <!-- Carga asíncrona del CSS principal -->
+    <script>
+        // Función para cargar CSS de forma asíncrona
+        function loadCSS(href, before, media) {
+            var ss = window.document.createElement("link");
+            var ref = before || window.document.getElementsByTagName("script")[0];
+            var sheets = window.document.styleSheets;
+            ss.rel = "stylesheet";
+            ss.href = href;
+            ss.media = "only x";
+            
+            ref.parentNode.insertBefore(ss, ref);
+            
+            function toggleMedia() {
+                var defined;
+                for (var i = 0; i < sheets.length; i++) {
+                    if (sheets[i].href && sheets[i].href.indexOf(href) > -1) {
+                        defined = true;
+                    }
+                }
+                if (defined) {
+                    ss.media = media || "all";
+                } else {
+                    setTimeout(toggleMedia);
+                }
+            }
+            
+            toggleMedia();
+            return ss;
+        }
+        
+        // Cargar el CSS principal
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCSS('css/styles.css');
+        });
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -150,11 +202,8 @@
                 </div>
                 
                 <!-- Formulario de Contacto -->
-                <form action="https://formsubmit.co/multiserviciosdicampli25@gmail.com" method="POST">
-     <input type="text" name="name" required>
-     <input type="email" name="email" required>
-     <button type="submit">Send</button>
-</form>
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/ajax/multiserviciosdicampli25@gmail.com" method="POST">
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="nombre">Nombre completo *</label>
                             <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
