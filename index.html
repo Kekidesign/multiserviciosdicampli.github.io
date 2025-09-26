@@ -203,59 +203,56 @@
                 
                 <!-- Formulario de Contacto -->
                 <form id="contact-form" class="contact-form" action="https://formsubmit.co/multiserviciosdicampli25@gmail.com" method="POST">
+                    <!-- Opcional: evita spam -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Opcional: redirección después del envío -->
+                    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+                    <!-- Opcional: nombre del formulario -->
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde el formulario web">
+                  
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Nombre completo *</label>
-                            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo electrónico *</label>
-                            <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
-                        </div>
+                      <div class="form-group">
+                        <label for="name">Nombre completo *</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Correo electrónico *</label>
+                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                      </div>
                     </div>
-                    
+                  
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000">
-                        </div>
-                        <div class="form-group">
-                            <label for="servicio">Servicio de interés</label>
-                            <select id="servicio" name="servicio">
-                                <option value="">Selecciona un servicio</option>
-                                <option value="bricolaje">Bricolaje Integral</option>
-                                <option value="climatizacion">Climatización</option>
-                                <option value="frigorificos">Frigoríficos Comerciales</option>
-                                <option value="otro">Otro servicio</option>
-                            </select>
-                        </div>
+                      <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000">
+                      </div>
+                      <div class="form-group">
+                        <label for="servicio">Servicio de interés</label>
+                        <select id="servicio" name="servicio">
+                          <option value="">Selecciona un servicio</option>
+                          <option value="bricolaje">Bricolaje Integral</option>
+                          <option value="climatizacion">Climatización</option>
+                          <option value="frigorificos">Frigoríficos Comerciales</option>
+                          <option value="otro">Otro servicio</option>
+                        </select>
+                      </div>
                     </div>
-                    
-                    <div class="form-group">
+                  
+                    <div class="form-row">
+                      <div class="form-group">
                         <label for="mensaje">Mensaje *</label>
                         <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+                      </div>
                     </div>
-                    
+                  
                     <div class="form-footer">
-                        <p class="required-fields">* Campos obligatorios</p>
-                        <button type="submit" class="btn-submit">
-                            <span>Enviar mensaje</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
+                      <p class="required-fields">* Campos obligatorios</p>
+                      <button type="submit" class="btn-submit">
+                        <span>Enviar mensaje</span>
+                        <i class="fas fa-paper-plane"></i>
+                      </button>
                     </div>
-                    
-                    <!-- Configuraciones de FormSubmit -->
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_subject" value="Nuevo mensaje de contacto">
-                    <input type="hidden" name="_next" value="https://multiserviciosdicampli.github.io/gracias">
-                    <input type="text" name="_honey" style="display:none">
-                    <div id="form-messages"></div>
-                    <input type="hidden" name="_next" value="https://multiserviciosdicampli.github.io/gracias">
-                    <input type="text" name="_honey" style="display:none">
-                    
-                    <div id="form-messages" class="form-messages"></div>
-                </form>
+                  </form>
             </div>
         </div>
     </section>
