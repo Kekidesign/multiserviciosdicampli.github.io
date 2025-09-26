@@ -205,8 +205,8 @@
                 <form id="contact-form" class="contact-form" action="https://formsubmit.co/multiserviciosdicampli25@gmail.com" method="POST">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="nombre">Nombre completo *</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                            <label for="name">Nombre completo *</label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Correo electrónico *</label>
@@ -250,87 +250,14 @@
                     <input type="hidden" name="_subject" value="Nuevo mensaje de contacto">
                     <input type="hidden" name="_next" value="https://multiserviciosdicampli.github.io/gracias">
                     <input type="text" name="_honey" style="display:none">
+                    <div id="form-messages"></div>
+                    <input type="hidden" name="_next" value="https://multiserviciosdicampli.github.io/gracias">
+                    <input type="text" name="_honey" style="display:none">
                     
                     <div id="form-messages" class="form-messages"></div>
                 </form>
             </div>
         </div>
-        
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('contact-form');
-            const formMessages = document.getElementById('form-messages');
-            const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
-            
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Mostrar estado de carga
-                    if (submitBtn) {
-                        submitBtn.disabled = true;
-                        const submitText = submitBtn.querySelector('span');
-                        if (submitText) submitText.textContent = 'Enviando...';
-                    }
-                    
-                    if (formMessages) {
-                        formMessages.style.display = 'none';
-                    }
-                    
-                    // Enviar formulario
-                    fetch(form.action, {
-                        method: 'POST',
-                        body: new FormData(form),
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            return response.json();
-                        } else {
-                            throw new Error('Error en la red');
-                        }
-                    })
-                    .then(data => {
-                        // Éxito
-                        showMessage('✅ Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.', 'success');
-                        form.reset();
-                    })
-                    .catch(error => {
-                        // Error
-                        console.error('Error:', error);
-                        showMessage('❌ Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.', 'error');
-                    })
-                    .finally(() => {
-                        // Restaurar botón
-                        if (submitBtn) {
-                            submitBtn.disabled = false;
-                            const submitText = submitBtn.querySelector('span');
-                            if (submitText) submitText.textContent = 'Enviar mensaje';
-                        }
-                    });
-                });
-                
-                function showMessage(message, type) {
-                    if (!formMessages) return;
-                    
-                    formMessages.textContent = message;
-                    formMessages.className = 'form-messages';
-                    formMessages.classList.add(type);
-                    formMessages.style.display = 'block';
-                    
-                    // Hacer scroll al mensaje
-                    formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    
-                    // Ocultar mensaje después de 5 segundos
-                    setTimeout(() => {
-                        formMessages.style.display = 'none';
-                    }, 10000);
-                }
-            }
-        });
-        </script>
     </section>
 
     <!-- Footer -->
