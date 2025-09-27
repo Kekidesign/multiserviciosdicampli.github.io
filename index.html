@@ -207,47 +207,64 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Multiservicios Di Campli">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://multiserviciosdicampli.com/gracias.html">
-                    <input type="hidden" name="_autoresponse" value="Gracias por contactar con Multiservicios Di Campli. Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.">
+                    <input type="hidden" name="_next" value="https://multiserviciosdicampli.github.io/multiserviciosdicampli.github.io/gracias.html">
+                    <input type="hidden" name="_autoresponse" value="Gracias por contactar a Multiservicios Di Campli. Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.">
                     <input type="text" name="_honey" style="display:none">
                     
-                    <div id="form-messages" class="form-messages"></div>
+                    <!-- Mensajes del formulario -->
+                    <div id="form-message" class="form-message" style="display: none; margin-bottom: 1rem; padding: 0.75rem; border-radius: 4px;"></div>
                     
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu Nombre Completo" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                    <!-- Campo Nombre -->
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="100" placeholder="Tu nombre completo" class="form-control">
+                        <div class="error-message" id="nombre-error"></div>
                     </div>
                     
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <input type="email" id="email" name="correo" class="form-control" placeholder="Tu Correo Electrónico" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+                        <div class="error-message" id="email-error"></div>
                     </div>
                     
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Tu Teléfono (Opcional)" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" pattern="[0-9+\-\s()]{9,20}" placeholder="+34 123 456 789">
+                        <div class="error-message" id="telefono-error"></div>
                     </div>
                     
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <select id="servicio" name="servicio" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; background-color: #fff; color: #111;">
+                    <div class="form-group">
+                        <label for="servicio">Servicio de interés</label>
+                        <select id="servicio" name="servicio" required>
                             <option value="">Selecciona un servicio</option>
                             <option value="Bricolaje Integral">Bricolaje Integral</option>
                             <option value="Climatización">Climatización</option>
                             <option value="Frigoríficos Comerciales">Frigoríficos Comerciales</option>
-                            <option value="Otro servicio">Otro servicio</option>
+                            <option value="Otro">Otro</option>
                         </select>
                     </div>
                     
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
-                        <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..." rows="5" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; resize: vertical; min-height: 120px;"></textarea>
-                        <div class="char-counter" style="text-align: right; font-size: 0.8rem; color: #666; margin-top: 0.25rem;"><span id="char-count">0</span>/500</div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje *</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required minlength="10" maxlength="500" placeholder="Cuéntanos cómo podemos ayudarte"></textarea>
+                        <div class="char-count">
+                            <span id="char-count">0</span>/500 caracteres
+                        </div>
+                        <div class="error-message" id="mensaje-error"></div>
                     </div>
                     
-                    <div class="form-group" style="text-align: right;">
-                        <button type="submit" class="btn-submit" style="background: #111; color: #fff; padding: 0.75rem 2rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; transition: background 0.3s ease;">
-                            Enviar Mensaje
-                        </button>
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="privacidad" name="privacidad" required>
+                            <label for="privacidad">Acepto la <a href="#" class="privacy-link">Política de Privacidad</a> *</label>
+                            <div class="error-message" id="privacidad-error"></div>
+                        </div>
                     </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="submit-button">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                    </button>
                 </form>
-            </div>
-        </div>
     </section>
 
     <!-- Footer -->
